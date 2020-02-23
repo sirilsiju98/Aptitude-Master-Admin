@@ -333,6 +333,8 @@
             android:layout_height="wrap_content"
             android:text="Upload"
             android:onClick="upload"
+            android:background="@drawable/round_cor"
+            android:textColor="#FFFFFF"
 
             android:layout_marginVertical="20dp"/>
 

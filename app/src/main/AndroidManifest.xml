@@ -6,12 +6,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo1"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo1"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Upload"></activity>
+        <activity android:name=".Leader_Board"></activity>
+        <activity android:name=".ResetPin" />
+        <activity android:name=".AddUser" />
+        <activity android:name=".Upload" />
         <activity android:name=".Quiz" />
         <activity android:name=".Tutorial" />
         <activity android:name=".MainActivity">

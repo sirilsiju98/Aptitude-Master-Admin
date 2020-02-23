@@ -3,7 +3,9 @@ package com.example.aptitudemasteradmin;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -22,6 +24,7 @@ public class Upload extends AppCompatActivity implements OnSuccessListener, OnFa
     Spinner spinner[];
     EditText topic ,question[] ,answers[][] ;
     String topicTxt,questionsTxt[],answersTxt[][],spinnerTxt[];
+    ProgressDialog dialog;
     private void setData()
     {
         topicTxt=topic.getText().toString();
@@ -135,6 +138,7 @@ public class Upload extends AppCompatActivity implements OnSuccessListener, OnFa
     {
         if(checknotempty())
         {
+            dialog.show();
             setData();
             FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference myRef = database.getReference("Quiz");
@@ -159,19 +163,33 @@ public class Upload extends AppCompatActivity implements OnSuccessListener, OnFa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("New Quiz");
         initialize();
         setSpinner();
-
+        dialog=new ProgressDialog(this);
+        dialog.setCancelable(false);
+        dialog.setTitle("Please Wait");
+        dialog.setMessage("Posting Quiz.....");
     }
 
     @Override
     public void onSuccess(Object o) {
         Toast.makeText(this, "Successfully Posted A Quiz", Toast.LENGTH_SHORT).show();
+
         finish();
     }
 
     @Override
     public void onFailure(@NonNull Exception e) {
         Toast.makeText(this, e.toString(), Toast.LENGTH_SHORT).show();
+    }
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                finish();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

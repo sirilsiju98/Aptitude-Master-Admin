@@ -19,6 +19,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
 
     }
+    public void adduser(View view)
+    {
+        Intent intent = new Intent(MainActivity.this,AddUser.class);
+        startActivity(intent);
+    }
+    public void reset(View view)
+    {
+        Intent intent = new Intent(MainActivity.this,ResetPin.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
